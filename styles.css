@@ -67,12 +67,21 @@ img {
 	text-align: center;
 }
 
-#graph {
+#hourly-forecast {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+#hourly-title {
+	width: 100%;
+}
+
+#graphs {
 	background-image: url("images/graph_bg.jpg");
 	background-repeat: repeat;
 	display: flex;
 	flex-wrap: wrap;
-	width: 100%;
+	width: 95%;
 }
 
 .graph-entry {
@@ -81,6 +90,23 @@ img {
 	text-align: center;
 	color: #FFFFFF;
 	height: 50%;
+}
+
+#left-scale {
+	text-align: right;
+	align-self: flex-end;
+	width: 3%;
+	padding-right: 2%;
+	height: 100%;
+	color: #777777;
+}
+
+#bottom-scale {
+	display: flex;
+	text-align: center;
+	padding-left: 5%;
+	width: 95%;
+	color: #777777;
 }
 
 #timestamp {

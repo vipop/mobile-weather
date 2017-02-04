@@ -39,34 +39,52 @@ function update_weather(data) {
 }
 
 function update_forecast(data) {
-	document.getElementById("graph").innerHTML = create_graph(data);
-}
-
-function toTitleCase(str)
-{
-    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+	document.getElementById("graphs").innerHTML = create_graph(data);
 }
 
 function create_graph(data) {
 	var greatest = -9999;
-	var graph = "";
+	var graphs = "";
 	var i;
 
 	for (i = 0; i < data.cnt; i++) {
 		var cur = Math.abs(Math.round(data.list[i].main.temp));
 		if (cur > greatest) greatest = cur;
 	}
-	var height = 10 * (greatest + 5) * 2;
-	document.getElementById("graph").style.height = height.toString() + "px";
+	var height = 16 * (greatest + 4) * 2;
+	var scale = greatest + 3;
+	document.getElementById("graphs").style.height = height.toString() + "px";
 	for (i = 0; i < data.cnt; i++) {
+		var time = data.list[i].dt_txt.toString();
+
+		if (scale >= (0 - (greatest + 3))) {
+			if (i % 4 == 0) {
+				document.getElementById("left-scale").innerHTML += '<div style="height: 16px;">' + scale-- + '&deg;</div>';
+			} else {
+				document.getElementById("left-scale").innerHTML += '<div style="height: 16px;"></div>';
+				scale--;
+			}
+		}
+
 		var width = 100 / data.cnt;
 		var temp = Math.round(data.list[i].main.temp);
-		var temp_bar = document.getElementById("graph").clientHeight / 2;
-		if (temp < 0) temp_bar -= Math.abs(temp) * 10;
-		else temp_bar += Math.abs(temp) * 10;
-		if (i % 2 == 0) graph += '<div class="graph-entry" style="height:' + temp_bar + 'px; background-color: #ffa64d; width:' + width + '%">' + temp + '</div>';
-		else graph += '<div class="graph-entry" style="height:' + temp_bar + 'px; width:' + width + '%">' + temp + '</div>';
+		var temp_bar = document.getElementById("graphs").clientHeight / 2;
+
+		if (temp < 0) temp_bar -= Math.abs(temp) * 16;
+		else temp_bar += Math.abs(temp) * 16;
+
+		if (i % 2 == 0) graphs += '<div class="graph-entry" style="height:' + temp_bar + 'px; background-color: #ffa64d; width:' + width + '%">' + temp + '</div>';
+		else graphs += '<div class="graph-entry" style="height:' + temp_bar + 'px; width:' + width + '%">' + temp + '</div>';
+
+		if (time.substring(11,13) == "12") document.getElementById("bottom-scale").innerHTML += '<div style="width: ' + width + '%;">12:00<br>PM</div>';
+		else if (time.substring(11,13) == "00")  document.getElementById("bottom-scale").innerHTML += '<div style="width: ' + width + '%;">12:00<br>AM</div>';
+		else document.getElementById("bottom-scale").innerHTML += '<div style="width: ' + width + '%;"></div>';
 	}
 
-	return graph;
+	return graphs;
+}
+
+function toTitleCase(str)
+{
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
