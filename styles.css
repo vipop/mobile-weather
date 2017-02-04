@@ -10,7 +10,22 @@ h1 {
 	background-color: #FFFFFF;
 	box-shadow: 0px 1px 1px 1px #888888;
 	padding: 20px;
-	width: 570px;
+	width: 870px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+header {
+	display: flex;
+    flex-wrap: wrap;
+}
+
+#city {
+	width: 100%;
+}
+
+#description {
+	width: 100%;
 }
 
 main {
@@ -30,7 +45,7 @@ main {
 }
 
 .day {
-	width: 110px;
+	width: 20%;
 }
 
 .forecast-day-title {
@@ -50,4 +65,26 @@ img {
 
 .max {
 	text-align: center;
+}
+
+#graph {
+	background-image: url("images/graph_bg.jpg");
+	background-repeat: repeat;
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+.graph-entry {
+	align-self: flex-end;
+	background-color: #ffbf80;
+	text-align: center;
+	color: #FFFFFF;
+	height: 50%;
+}
+
+#timestamp {
+	text-align: right;
+	margin-bottom: 0px;
+	color: #888888;
 }
