@@ -1,5 +1,6 @@
 body {
-	background-color: #DDDDDD;
+	background-color: #111111;
+	color: #FFFFFF;
 }
 
 h1 {
@@ -7,12 +8,8 @@ h1 {
 }
 
 #card {
-	background-color: #FFFFFF;
-	box-shadow: 0px 1px 1px 1px #888888;
-	padding: 20px;
-	width: 870px;
-	margin-left: auto;
-	margin-right: auto;
+
+	padding: 10%;
 }
 
 header {
@@ -26,6 +23,7 @@ header {
 
 #description {
 	width: 100%;
+	color: #AAAAAA;
 }
 
 main {
@@ -77,15 +75,25 @@ img {
 }
 
 #graphs {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+.graph-container {
+	display: flex;
+	flex-wrap: wrap;
+	padding-bottom: 15px;
+	padding-left: 2%;
+	padding-right: 2%;
+}
+
+.graph {
 	background-image: url("images/graph_bg.jpg");
 	background-repeat: repeat;
 	display: flex;
 	flex-wrap: wrap;
-	width: 95%;
-}
-
-.graph {
-	
+	width: 90%;
 }
 
 .graph-entry {
@@ -96,25 +104,46 @@ img {
 	height: 50%;
 }
 
-#left-scale {
+.left-scale {
 	text-align: right;
 	align-self: flex-end;
-	width: 3%;
-	padding-right: 2%;
-	height: 100%;
-	color: #777777;
+	width: 7%;
+	padding-right: 3%;
+	color: #AAAAAA;
 }
 
-#bottom-scale {
+.bottom-scale {
+	padding-top: 15px;
 	display: flex;
 	text-align: center;
-	padding-left: 5%;
-	width: 95%;
-	color: #777777;
+	padding-left: 10%;
+	width: 90%;
+	color: #AAAAAA;
 }
 
 #timestamp {
 	text-align: right;
 	margin-bottom: 0px;
 	color: #888888;
+}
+
+/* --- --- --- SMALL SCREENS --- --- --- */
+@media only screen and (max-width: 900px) {
+	.graph-container {
+		width: 96%;
+	}
+}
+
+/* --- --- --- MEDIUM SCREENS --- --- --- */
+@media only screen and (min-width: 900px) and (max-width: 1440px) {
+	.graph-container {
+		width: 43%;
+	}
+}
+
+/* --- --- --- LARGE SCREENS --- --- --- */
+@media only screen and (min-width: 1440px) {
+	.graph-container {
+		width: 29.333%;
+	}
 }

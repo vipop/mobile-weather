@@ -39,49 +39,122 @@ function update_weather(data) {
 }
 
 function update_forecast(data) {
-	document.getElementById("graphs").innerHTML = create_graph(data);
+	create_graphs(data);
 }
 
-function create_graph(data) {
+function create_graphs(data) {
+	// initiate variables
 	var greatest = -9999;
-	var graphs = "";
-	var i;
+	var graph = "";
+	var i, j;
+	var g = 0;
+	var l = 0;
+	var b = 0;
 
+	// get all the graphs
+	var graphs = document.getElementsByClassName("graph");
+	// get all the left scales
+	var left_scales = document.getElementsByClassName("left-scale");
+	// get all the bottom scales
+	var bottom_scales = document.getElementsByClassName("bottom-scale");
+
+	// find greatest temperature
 	for (i = 0; i < data.cnt; i++) {
 		var cur = Math.abs(Math.round(data.list[i].main.temp));
 		if (cur > greatest) greatest = cur;
 	}
-	var height = 16 * (greatest + 4) * 2;
-	var scale = greatest + 3;
-	document.getElementById("graphs").style.height = height.toString() + "px";
-	for (i = 0; i < data.cnt; i++) {
-		var time = data.list[i].dt_txt.toString();
 
-		if (scale >= (0 - (greatest + 3))) {
-			if (i % 4 == 0) {
-				document.getElementById("left-scale").innerHTML += '<div style="height: 16px;">' + scale-- + '&deg;</div>';
-			} else {
-				document.getElementById("left-scale").innerHTML += '<div style="height: 16px;"></div>';
-				scale--;
+	// calculate graph height and scale based on the greatest temperature
+	var scale = greatest + 4;
+
+	// set the left scales
+	j = greatest + 4;
+	while (scale > (0 - (greatest + 4))) {
+		if (j % 4 == 0) {
+			left_scales[0].innerHTML += '<div style="height: 16px;">' + scale + '&deg;</div>';
+			left_scales[1].innerHTML += '<div style="height: 16px;">' + scale + '&deg;</div>';
+			left_scales[2].innerHTML += '<div style="height: 16px;">' + scale + '&deg;</div>';
+			left_scales[3].innerHTML += '<div style="height: 16px;">' + scale + '&deg;</div>';
+			left_scales[4].innerHTML += '<div style="height: 16px;">' + scale + '&deg;</div>';
+			scale--;
+			j--;
+		} else {
+			left_scales[0].innerHTML += '<div style="height: 16px;"></div>';
+			left_scales[1].innerHTML += '<div style="height: 16px;"></div>';
+			left_scales[2].innerHTML += '<div style="height: 16px;"></div>';
+			left_scales[3].innerHTML += '<div style="height: 16px;"></div>';
+			left_scales[4].innerHTML += '<div style="height: 16px;"></div>';
+			scale--;
+			j--;
+		}
+	}
+
+	// count
+	var count = 1;
+	var width;
+
+	// iterate through every temperature and populate graphs
+	for (i = 0; i < data.cnt; i++) {
+		count++;
+		// get the time of the data
+		var timestamp = data.list[i].dt_txt.toString();
+
+		// set graph height and scale based on the greatest temperature
+		var height = 16 * (greatest + 4) * 2;
+		graphs[g].style.height = height + "px";
+
+		// get temperature
+		var temp = Math.round(data.list[i].main.temp);
+		// initialize the height of the temperature bar to half of the graph's height
+		var temp_bar = graphs[g].clientHeight / 2;
+
+		width = 100 / count;
+
+		// if the temperature is below zero then subtract
+		if (temp < 0) temp_bar -= Math.abs(temp) * 16;
+		// if the temperature is above zero then add
+		else temp_bar += Math.abs(temp) * 16;
+
+		var time = parseInt(timestamp.substring(11,13), 10);
+		var timeDisplay;
+		var timePeriod;
+
+		if (time == 0) {
+			timePeriod = "AM";
+			timeDisplay = 12;
+		}
+		else if (time > 0 && time < 12) {
+			timePeriod = "AM";
+			timeDisplay = time;
+		}
+		else if (time == 12) {
+			timePeriod = "PM";
+			timeDisplay = time;
+		}
+		else {
+			timePeriod = "PM";
+			timeDisplay = time % 12;
+		}
+
+		// set bottom scale
+		bottom_scales[b].innerHTML += '<div style="width: ' + width + '%;">' + timeDisplay + ':00<br />' + timePeriod + '</div>';
+
+		if (i + 1 == data.cnt || data.list[i+1].dt_txt.toString().substring(11,13) == "00") {
+				graphs[g++].innerHTML = graph;
+				scale = greatest + 4;
+				graph = "";
+				l++;
+				b++;
+				if (count == 8) count = 1;
 			}
 		}
 
-		var width = 100 / data.cnt;
-		var temp = Math.round(data.list[i].main.temp);
-		var temp_bar = document.getElementById("graphs").clientHeight / 2;
+		// add bar to the graph
+		if (i % 2 == 0) graph += '<div class="graph-entry" style="height:' + temp_bar + 'px; background-color: #ffa64d; width:' + width + '%">' + temp + '</div>';
+		else graph += '<div class="graph-entry" style="height:' + temp_bar + 'px; width:' + width + '%">' + temp + '</div>';
 
-		if (temp < 0) temp_bar -= Math.abs(temp) * 16;
-		else temp_bar += Math.abs(temp) * 16;
-
-		if (i % 2 == 0) graphs += '<div class="graph-entry" style="height:' + temp_bar + 'px; background-color: #ffa64d; width:' + width + '%">' + temp + '</div>';
-		else graphs += '<div class="graph-entry" style="height:' + temp_bar + 'px; width:' + width + '%">' + temp + '</div>';
-
-		if (time.substring(11,13) == "12") document.getElementById("bottom-scale").innerHTML += '<div style="width: ' + width + '%;">12:00<br>PM</div>';
-		else if (time.substring(11,13) == "00")  document.getElementById("bottom-scale").innerHTML += '<div style="width: ' + width + '%;">12:00<br>AM</div>';
-		else document.getElementById("bottom-scale").innerHTML += '<div style="width: ' + width + '%;"></div>';
 	}
 
-	return graphs;
 }
 
 function toTitleCase(str)
