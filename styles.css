@@ -6,7 +6,6 @@ body {
 	padding-left: 10%;
 	padding-right: 10%;
 	padding-top: 5%;
-	padding-bottom: 5%;
 }
 
 h1 {
@@ -28,6 +27,29 @@ img {
 header {
 	display: flex;
     flex-wrap: wrap;
+}
+
+#search {
+	width: 100%;
+    padding-bottom: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+#search-bar {
+	width: 60%;
+    border: none;
+    height: 20pt;
+    border-radius: 5pt;
+    font-size: 16pt;
+    padding: 10px;
+}
+
+#submit {
+	width: 15%;
+    border-radius: 5pt;
+    background-color: white;
+    margin-left: 25px;
 }
 
 #city {
@@ -97,6 +119,10 @@ main {
 
 .max {
 	text-align: center;
+}
+
+summary {
+	outline:none;
 }
 
 #hourly-forecast {

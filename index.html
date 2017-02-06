@@ -8,6 +8,10 @@
 	</head>
 	<body>
 		<header>
+			<section id="search">
+				<input id="search-bar" type="text" name="city-search" placeholder="Search city..." />
+				<input id="submit" type="submit" name="submit" onclick="get_weather()"/>
+			</section>
 			<section id="weather-icon">
 				<img id="w-icon" src="./images/cloudy1.png" />
 			</section>
@@ -27,44 +31,44 @@
 			</section>
 			<section id="forecast">
 				<section class="day">
-					<h3 class="forecast-day-title">Monday</h3>
+					<h3 id="change-this" class="forecast-day-title">Today</h3>
 					<div>
 						<img class="forecast-icon" src="./images/cloudy1.png" />
 					</div>
+					<p class="max">4&deg;</p>
 					<p class="min">0&deg;</p>
-					<p class="max">4&deg;</p>
 				</section>
 				<section class="day">
-					<h3 class="forecast-day-title">Tuesday</h3>
+					<h3 class="forecast-day-title">Tomorrow</h3>
 					<div>
 						<img class="forecast-icon" src="./images/cloudy1.png" />
 					</div>
+					<p class="max">1&deg;</p>
 					<p class="min">-2&deg;</p>
-					<p class="max">1&deg;</p>
 				</section>
 				<section class="day">
-					<h3 class="forecast-day-title">Wednesday</h3>
+					<h3 class="forecast-day-title">Day 2</h3>
 					<div>
 						<img class="forecast-icon" src="./images/cloudy1.png" />
 					</div>
-					<p class="min">-8&deg;</p>
 					<p class="max">-2&deg;</p>
+					<p class="min">-8&deg;</p>
 				</section>
 				<section class="day">
-					<h3 class="forecast-day-title">Thursday</h3>
+					<h3 class="forecast-day-title">Day 3</h3>
 					<div>
 						<img class="forecast-icon" src="./images/cloudy1.png" />
 					</div>
-					<p class="min">-3&deg;</p>
 					<p class="max">1&deg;</p>
+					<p class="min">-3&deg;</p>
 				</section>
 				<section class="day">
-					<h3 class="forecast-day-title">Friday</h3>
+					<h3 class="forecast-day-title">Day 4</h3>
 					<div>
 						<img class="forecast-icon" src="./images/cloudy1.png" />
 					</div>
-					<p class="min">1&deg;</p>
 					<p class="max">4&deg;</p>
+					<p class="min">1&deg;</p>
 				</section>
 			</section>
 			<details id="hourly-forecast">

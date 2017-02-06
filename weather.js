@@ -15,30 +15,77 @@ if (window.XMLHttpRequest) {
 	    xhr.send();
 	};
 
-	getJSON("cur_weather.json", function(err, data) {
+	getJSON("http://api.openweathermap.org/data/2.5/weather?q=Toronto&APPID=c6a5060483924264de49050df47e6584&units=metric", function(err, data) {
 		if (err != null) {
-			console.log("Failed to read cur_weather.json");
+			console.log("Failed to read json data");
 		}
 		update_weather(data);
 	});
 
-	getJSON("forecast.json", function(err, data) {
+	getJSON("http://api.openweathermap.org/data/2.5/forecast/daily?q=Toronto&APPID=c6a5060483924264de49050df47e6584&cnt=5&units=metric", function(err, data) {
 		if (err != null) {
-			console.log("Failed to read forecast.json");
-		} else update_forecast(data);
+			console.log("Failed to read json data");
+		}
+		update_forecast(data);
 	});
 
+	getJSON("http://api.openweathermap.org/data/2.5/forecast?q=Toronto&APPID=c6a5060483924264de49050df47e6584&units=metric", function(err, data) {
+		if (err != null) {
+			console.log("Failed to read json data");
+		} else update_hourly_forecast(data);
+	});
+
+}
+
+function get_weather() {
+	var bar = document.getElementById("search-bar");
+	var x = bar.value;
+	getJSON("http://api.openweathermap.org/data/2.5/weather?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&units=metric", function(err, data) {
+		if (err != null) {
+			console.log("Failed to read json data");
+		}
+		update_weather(data);
+	});
+	getJSON("http://api.openweathermap.org/data/2.5/forecast/daily?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&cnt=5&units=metric", function(err, data) {
+		if (err != null) {
+			console.log("Failed to read json data");
+		}
+		update_forecast(data);
+	});
+	getJSON("http://api.openweathermap.org/data/2.5/forecast?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&units=metric", function(err, data) {
+		if (err != null) {
+			console.log("Failed to read json data");
+		} else update_hourly_forecast(data);
+	});
 }
 
 function update_weather(data) {
 	document.getElementById("city-name").innerHTML = data.name;
 	document.getElementById("description").innerHTML = toTitleCase(data.weather[0].description);
+	document.getElementById("temp").innerHTML = Math.round(data.main.temp) + "&deg;";
 	document.getElementById("humidity").innerHTML = "Humidity: " + data.main.humidity + "%";
 	document.getElementById("wind").innerHTML = "Wind: " + data.wind.speed + " km/h";
 	document.getElementById("timestamp").innerHTML =  Date();
 }
 
 function update_forecast(data) {
+	var mins = document.getElementsByClassName("min");
+	var maxs = document.getElementsByClassName("max");
+
+	mins[0].innerHTML = Math.round(data.list[0].temp.min) + "&deg;";
+	mins[1].innerHTML = Math.round(data.list[1].temp.min) + "&deg;";
+	mins[2].innerHTML = Math.round(data.list[2].temp.min) + "&deg;";
+	mins[3].innerHTML = Math.round(data.list[3].temp.min) + "&deg;";
+	mins[4].innerHTML = Math.round(data.list[4].temp.min) + "&deg;";
+
+	maxs[0].innerHTML = Math.round(data.list[0].temp.max) + "&deg;";
+	maxs[1].innerHTML = Math.round(data.list[1].temp.max) + "&deg;";
+	maxs[2].innerHTML = Math.round(data.list[2].temp.max) + "&deg;";
+	maxs[3].innerHTML = Math.round(data.list[3].temp.max) + "&deg;";
+	maxs[4].innerHTML = Math.round(data.list[4].temp.max) + "&deg;";
+}
+
+function update_hourly_forecast(data) {
 	create_graphs(data);
 }
 
@@ -145,11 +192,10 @@ function create_graphs(data) {
 
 		if (i + 1 == data.cnt || data.list[i+1].dt_txt.toString().substring(11,13) == "00") {
 				graphs[g++].innerHTML = graph;
-				//scale = greatest + 4;
+				scale = greatest + 1;
 				graph = "";
 				l++;
 				b++;
-				//if (count == 8) count = 1;
 		}
 
 	}
