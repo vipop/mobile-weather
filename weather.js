@@ -1,39 +1,19 @@
 if (window.XMLHttpRequest) {
 
-	var getJSON = function(url, callback) {
-	    var xhr = new XMLHttpRequest();
-	    xhr.open("get", url, true);
-	    xhr.responseType = "json";
-	    xhr.onload = function() {
-	      var status = xhr.status;
-	      if (status == 200) {
-	        callback(null, xhr.response);
-	      } else {
-	        callback(status);
-	      }
-	    };
-	    xhr.send();
-	};
+	document.getElementsByTagName("html")[0].style.height = "100%";
+	document.getElementsByTagName("body")[0].style.height = "100%";
+	document.getElementsByTagName("body")[0].style.display = "flex";
+	document.getElementsByTagName("body")[0].style["justify-content"] = "center";
+	document.getElementsByTagName("body")[0].style["padding-top"] = "0px";
+	document.getElementsByTagName("body")[0].style["padding-bottom"] = "0px";
+	document.getElementsByTagName("header")[0].style["align-self"] = "center";
+	document.getElementsByTagName("header")[0].style["width"] = "100%";
+	document.getElementById("search-bar").focus();
 
-	getJSON("http://api.openweathermap.org/data/2.5/weather?q=Toronto&APPID=c6a5060483924264de49050df47e6584&units=metric", function(err, data) {
-		if (err != null) {
-			console.log("Failed to read json data");
-		}
-		update_weather(data);
-	});
-
-	getJSON("http://api.openweathermap.org/data/2.5/forecast/daily?q=Toronto&APPID=c6a5060483924264de49050df47e6584&cnt=5&units=metric", function(err, data) {
-		if (err != null) {
-			console.log("Failed to read json data");
-		}
-		update_forecast(data);
-	});
-
-	getJSON("http://api.openweathermap.org/data/2.5/forecast?q=Toronto&APPID=c6a5060483924264de49050df47e6584&units=metric", function(err, data) {
-		if (err != null) {
-			console.log("Failed to read json data");
-		} else update_hourly_forecast(data);
-	});
+	document.getElementById("weather-icon").style.display = "none";
+	document.getElementById("city").style.display = "none";
+	document.getElementById("temperature").style.display = "none";
+	document.getElementById("main").style.display = "none";
 
 }
 
@@ -66,6 +46,22 @@ function update_weather(data) {
 	document.getElementById("humidity").innerHTML = "Humidity: " + data.main.humidity + "%";
 	document.getElementById("wind").innerHTML = "Wind: " + data.wind.speed + " km/h";
 	document.getElementById("timestamp").innerHTML =  Date();
+
+	document.getElementsByTagName("html")[0].style.height = "initial";
+	document.getElementsByTagName("body")[0].style.height = "initial";
+	document.getElementsByTagName("body")[0].style.display = "block";
+	document.getElementsByTagName("body")[0].style["justify-content"] = "initial";
+	document.getElementsByTagName("body")[0].style["padding-top"] = "intial";
+	document.getElementsByTagName("body")[0].style["padding-bottom"] = "0px";
+	document.getElementsByTagName("body")[0].style["align-self"] = "initial";
+	document.getElementsByTagName("body")[0].style["padding-left"] = "10%";
+	document.getElementsByTagName("body")[0].style["padding-right"] = "10%";
+	document.getElementsByTagName("body")[0].style["padding-top"] = "5%";
+
+	document.getElementById("weather-icon").style.display = "initial";
+	document.getElementById("city").style.display = "initial";
+	document.getElementById("temperature").style.display = "initial";
+	document.getElementById("main").style.display = "initial";
 }
 
 function update_forecast(data) {
@@ -200,6 +196,27 @@ function create_graphs(data) {
 
 	}
 
+}
+
+function getJSON(url, callback) {
+	var xhr = new XMLHttpRequest();
+	xhr.open("get", url, true);
+	xhr.responseType = "json";
+	xhr.onload = function() {
+	  var status = xhr.status;
+	  if (status == 200) {
+		callback(null, xhr.response);
+	  } else {
+		callback(status);
+	  }
+	};
+	xhr.send();
+};
+
+function submit(e) {
+	if (e.keyCode == 13) {
+        document.getElementById("submit").click();
+    }
 }
 
 function toTitleCase(str)

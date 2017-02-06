@@ -27,6 +27,7 @@ img {
 header {
 	display: flex;
     flex-wrap: wrap;
+	width: 100%;
 }
 
 #search {
@@ -43,6 +44,7 @@ header {
     border-radius: 5pt;
     font-size: 16pt;
     padding: 10px;
+	outline: none;
 }
 
 #submit {
@@ -50,6 +52,9 @@ header {
     border-radius: 5pt;
     background-color: white;
     margin-left: 25px;
+	color: #ffa64d;
+	font-size: 16pt;
+	outline: none;
 }
 
 #city {
@@ -70,6 +75,7 @@ header {
 #description {
 	color: #AAAAAA;
 	margin-bottom: 0px;
+	margin-top: 0px;
 }
 
 #temperature {
@@ -84,12 +90,13 @@ header {
 	transform: translateY(-50%);
 }
 
-main {
-	margin-top: 20px;
+#information {
+	margin-top: 25px;
+	display: flex;
 }
 
-.information {
-	display: flex;
+main {
+	margin-top: 20px;
 }
 
 .info {

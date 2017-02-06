@@ -1,16 +1,16 @@
 <!DOCTYPE HTML>
-<html>
+<html id="html">
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Weather App</title>
 		<link rel="stylesheet" type="text/css" href="styles.css">
 	</head>
-	<body>
+	<body id="body">
 		<header>
 			<section id="search">
-				<input id="search-bar" type="text" name="city-search" placeholder="Search city..." />
-				<input id="submit" type="submit" name="submit" onclick="get_weather()"/>
+				<input id="search-bar" type="text" name="city-search" placeholder="City name..." onkeypress="submit(event)" />
+				<input id="submit" type="submit" name="submit" onclick="get_weather()" value="Get weather"/>
 			</section>
 			<section id="weather-icon">
 				<img id="w-icon" src="./images/cloudy1.png" />
@@ -21,8 +21,8 @@
 			</section>
 			<section id="temperature"><h1 id="temp">-10&deg;</h1></section>
 		</header>
-		<main>
-			<section class="information">
+		<main id="main">
+			<section id="information">
 				<br />
 				<p id="humidity" class="info"></p>
 				<br />
