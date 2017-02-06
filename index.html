@@ -1,99 +1,104 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Weather App</title>
 		<link rel="stylesheet" type="text/css" href="styles.css">
 	</head>
 	<body>
-		<div id="card">
-			<header>
-				<h1 id="city"></h1>
+		<header>
+			<section id="weather-icon">
+				<img id="w-icon" src="./images/cloudy1.png" />
+			</section>
+			<section id="city">
+				<h1 id="city-name"></h1>
 				<h3 id="description"></h3>
-			</header>
-			<main>
-				<section class="information">
-					<br />
-					<p id="humidity" class="info"></p>
-					<br />
-					<p id="wind" class="info"></p>
-					<br />
+			</section>
+			<section id="temperature"><h1 id="temp">-10&deg;</h1></section>
+		</header>
+		<main>
+			<section class="information">
+				<br />
+				<p id="humidity" class="info"></p>
+				<br />
+				<p id="wind" class="info"></p>
+				<br />
+			</section>
+			<section id="forecast">
+				<section class="day">
+					<h3 class="forecast-day-title">Monday</h3>
+					<div>
+						<img class="forecast-icon" src="./images/cloudy1.png" />
+					</div>
+					<p class="min">0&deg;</p>
+					<p class="max">4&deg;</p>
 				</section>
-				<section id="forecast">
-					<section class="day">
-						<h3 class="forecast-day-title">Monday</h3>
-						<div>
-							<img src="./images/cloudy1.png" />
-						</div>
-						<p class="min">0&deg;</p>
-						<p class="max">4&deg;</p>
+				<section class="day">
+					<h3 class="forecast-day-title">Tuesday</h3>
+					<div>
+						<img class="forecast-icon" src="./images/cloudy1.png" />
+					</div>
+					<p class="min">-2&deg;</p>
+					<p class="max">1&deg;</p>
+				</section>
+				<section class="day">
+					<h3 class="forecast-day-title">Wednesday</h3>
+					<div>
+						<img class="forecast-icon" src="./images/cloudy1.png" />
+					</div>
+					<p class="min">-8&deg;</p>
+					<p class="max">-2&deg;</p>
+				</section>
+				<section class="day">
+					<h3 class="forecast-day-title">Thursday</h3>
+					<div>
+						<img class="forecast-icon" src="./images/cloudy1.png" />
+					</div>
+					<p class="min">-3&deg;</p>
+					<p class="max">1&deg;</p>
+				</section>
+				<section class="day">
+					<h3 class="forecast-day-title">Friday</h3>
+					<div>
+						<img class="forecast-icon" src="./images/cloudy1.png" />
+					</div>
+					<p class="min">1&deg;</p>
+					<p class="max">4&deg;</p>
+				</section>
+			</section>
+			<details id="hourly-forecast">
+				<summary id="hourly-title">5-Day Hourly Forecast</summary>
+				<section id="graphs">
+					<section class="graph-container">
+						<section class="left-scale"></section>
+						<section class="graph"></section>
+						<section class="bottom-scale"></section>
 					</section>
-					<section class="day">
-						<h3 class="forecast-day-title">Tuesday</h3>
-						<div>
-							<img src="./images/cloudy1.png" />
-						</div>
-						<p class="min">-2&deg;</p>
-						<p class="max">1&deg;</p>
+					<section class="graph-container">
+						<section class="left-scale"></section>
+						<section class="graph"></section>
+						<section class="bottom-scale"></section>
 					</section>
-					<section class="day">
-						<h3 class="forecast-day-title">Wednesday</h3>
-						<div>
-							<img src="./images/cloudy1.png" />
-						</div>
-						<p class="min">-8&deg;</p>
-						<p class="max">-2&deg;</p>
+					<section class="graph-container">
+						<section class="left-scale"></section>
+						<section class="graph"></section>
+						<section class="bottom-scale"></section>
 					</section>
-					<section class="day">
-						<h3 class="forecast-day-title">Thursday</h3>
-						<div>
-							<img src="./images/cloudy1.png" />
-						</div>
-						<p class="min">-3&deg;</p>
-						<p class="max">1&deg;</p>
+					<section class="graph-container">
+						<section class="left-scale"></section>
+						<section class="graph"></section>
+						<section class="bottom-scale"></section>
 					</section>
-					<section class="day">
-						<h3 class="forecast-day-title">Friday</h3>
-						<div>
-							<img src="./images/cloudy1.png" />
-						</div>
-						<p class="min">1&deg;</p>
-						<p class="max">4&deg;</p>
+					<section class="graph-container">
+						<section class="left-scale"></section>
+						<section class="graph"></section>
+						<section class="bottom-scale"></section>
 					</section>
 				</section>
-				<section id="hourly-forecast">
-					<h3 id="hourly-title">5-Day Hourly Forecast</h3>
-					<section id="graphs">
-						<section class="graph-container">
-							<section class="left-scale"></section>
-							<section class="graph"></section>
-							<section class="bottom-scale"></section>
-						</section>
-						<section class="graph-container">
-							<section class="left-scale"></section>
-							<section class="graph"></section>
-							<section class="bottom-scale"></section>
-						</section>
-						<section class="graph-container">
-							<section class="left-scale"></section>
-							<section class="graph"></section>
-							<section class="bottom-scale"></section>
-						</section>
-						<section class="graph-container">
-							<section class="left-scale"></section>
-							<section class="graph"></section>
-							<section class="bottom-scale"></section>
-						</section>
-						<section class="graph-container">
-							<section class="left-scale"></section>
-							<section class="graph"></section>
-							<section class="bottom-scale"></section>
-						</section>
-					</section>
-				</section>
-				<p id="timestamp"></p>
-			</main>
-		</div>
+			</details>
+			<p id="timestamp"></p>
+		</main>
 		<script src="weather.js"></script>
 	</body>
 </html>

@@ -31,7 +31,7 @@ if (window.XMLHttpRequest) {
 }
 
 function update_weather(data) {
-	document.getElementById("city").innerHTML = data.name;
+	document.getElementById("city-name").innerHTML = data.name;
 	document.getElementById("description").innerHTML = toTitleCase(data.weather[0].description);
 	document.getElementById("humidity").innerHTML = "Humidity: " + data.main.humidity + "%";
 	document.getElementById("wind").innerHTML = "Wind: " + data.wind.speed + " km/h";
@@ -65,28 +65,28 @@ function create_graphs(data) {
 	}
 
 	// calculate graph height and scale based on the greatest temperature
-	var scale = greatest + 4;
+	var scale = greatest + 1;
 
 	// set the left scales
-	j = greatest + 4;
-	while (scale > (0 - (greatest + 4))) {
-		if (j % 4 == 0) {
-			left_scales[0].innerHTML += '<div style="height: 16px;">' + scale + '&deg;</div>';
-			left_scales[1].innerHTML += '<div style="height: 16px;">' + scale + '&deg;</div>';
-			left_scales[2].innerHTML += '<div style="height: 16px;">' + scale + '&deg;</div>';
-			left_scales[3].innerHTML += '<div style="height: 16px;">' + scale + '&deg;</div>';
-			left_scales[4].innerHTML += '<div style="height: 16px;">' + scale + '&deg;</div>';
+	//j = greatest + 2;
+	while (scale >= -Math.abs(greatest + 1)) {
+		//if (j % 4 == 0) {
+			left_scales[0].innerHTML += '<div style="height: 20px;">' + scale + '&deg;</div>';
+			left_scales[1].innerHTML += '<div style="height: 20px;">' + scale + '&deg;</div>';
+			left_scales[2].innerHTML += '<div style="height: 20px;">' + scale + '&deg;</div>';
+			left_scales[3].innerHTML += '<div style="height: 20px;">' + scale + '&deg;</div>';
+			left_scales[4].innerHTML += '<div style="height: 20px;">' + scale + '&deg;</div>';
 			scale--;
-			j--;
-		} else {
-			left_scales[0].innerHTML += '<div style="height: 16px;"></div>';
-			left_scales[1].innerHTML += '<div style="height: 16px;"></div>';
-			left_scales[2].innerHTML += '<div style="height: 16px;"></div>';
-			left_scales[3].innerHTML += '<div style="height: 16px;"></div>';
-			left_scales[4].innerHTML += '<div style="height: 16px;"></div>';
-			scale--;
-			j--;
-		}
+		//	j--;
+		//} else {
+		//	left_scales[0].innerHTML += '<div style="height: 20px;"></div>';
+		//	left_scales[1].innerHTML += '<div style="height: 20px;"></div>';
+		//	left_scales[2].innerHTML += '<div style="height: 20px;"></div>';
+		//	left_scales[3].innerHTML += '<div style="height: 20px;"></div>';
+		//	left_scales[4].innerHTML += '<div style="height: 20px;"></div>';
+		//	scale--;
+		//	j--;
+		//}
 	}
 
 	// count
@@ -95,25 +95,29 @@ function create_graphs(data) {
 
 	// iterate through every temperature and populate graphs
 	for (i = 0; i < data.cnt; i++) {
-		count++;
+		//count++;
 		// get the time of the data
 		var timestamp = data.list[i].dt_txt.toString();
 
 		// set graph height and scale based on the greatest temperature
-		var height = 16 * (greatest + 4) * 2;
+		var height = 20 * (greatest + 2) * 2;
 		graphs[g].style.height = height + "px";
 
 		// get temperature
 		var temp = Math.round(data.list[i].main.temp);
 		// initialize the height of the temperature bar to half of the graph's height
-		var temp_bar = graphs[g].clientHeight / 2;
+		var temp_bar = height / 2;
 
-		width = 100 / count;
+		width = 100 / 8;
 
 		// if the temperature is below zero then subtract
-		if (temp < 0) temp_bar -= Math.abs(temp) * 16;
+		if (temp < 0) temp_bar -= Math.abs(temp) * 20;
 		// if the temperature is above zero then add
-		else temp_bar += Math.abs(temp) * 16;
+		else temp_bar += Math.abs(temp) * 20;
+
+		// add bar to the graph
+		if (i % 2 == 0) graph += '<div class="graph-entry" style="height:' + temp_bar + 'px; background-color: #ffa64d; width:' + width + '%">' + temp + '</div>';
+		else graph += '<div class="graph-entry" style="height:' + temp_bar + 'px; width:' + width + '%">' + temp + '</div>';
 
 		var time = parseInt(timestamp.substring(11,13), 10);
 		var timeDisplay;
@@ -141,17 +145,12 @@ function create_graphs(data) {
 
 		if (i + 1 == data.cnt || data.list[i+1].dt_txt.toString().substring(11,13) == "00") {
 				graphs[g++].innerHTML = graph;
-				scale = greatest + 4;
+				//scale = greatest + 4;
 				graph = "";
 				l++;
 				b++;
-				if (count == 8) count = 1;
-			}
+				//if (count == 8) count = 1;
 		}
-
-		// add bar to the graph
-		if (i % 2 == 0) graph += '<div class="graph-entry" style="height:' + temp_bar + 'px; background-color: #ffa64d; width:' + width + '%">' + temp + '</div>';
-		else graph += '<div class="graph-entry" style="height:' + temp_bar + 'px; width:' + width + '%">' + temp + '</div>';
 
 	}
 

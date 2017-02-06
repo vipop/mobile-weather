@@ -1,15 +1,28 @@
 body {
 	background-color: #111111;
 	color: #FFFFFF;
+	font-size: 16pt;
+	margin: 0px;
+	padding-left: 10%;
+	padding-right: 10%;
+	padding-top: 5%;
+	padding-bottom: 5%;
 }
 
 h1 {
 	margin: 0px;
 }
 
-#card {
+h3 {
+	font-size: 24pt;
+}
 
-	padding: 10%;
+img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+	margin-bottom: auto;
 }
 
 header {
@@ -18,12 +31,35 @@ header {
 }
 
 #city {
-	width: 100%;
+	font-size: 56pt;
+	width: 50%;
+}
+
+#weather-icon {
+	width: 20%;
+}
+
+#w-icon {
+	position: relative;
+	top: 35%;
+	transform: translateY(-50%);
 }
 
 #description {
-	width: 100%;
 	color: #AAAAAA;
+	margin-bottom: 0px;
+}
+
+#temperature {
+	text-align: center;
+	font-size: 48pt;
+	width: 30%;
+}
+
+#temp {
+	position: relative;
+	top: 40%;
+	transform: translateY(-50%);
 }
 
 main {
@@ -36,6 +72,7 @@ main {
 
 .info {
 	width: 50%;
+	text-align: center;
 }
 
 #forecast {
@@ -50,11 +87,8 @@ main {
 	text-align: center;
 }
 
-img {
-	display: block;
+.forecast-icon {
 	width: 75px;
-	margin-left: auto;
-	margin-right: auto;
 }
 
 .min {
@@ -72,6 +106,10 @@ img {
 
 #hourly-title {
 	width: 100%;
+	font-size: 24pt;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	font-weight: bold;
 }
 
 #graphs {
@@ -105,11 +143,13 @@ img {
 }
 
 .left-scale {
-	text-align: right;
+	text-align: center;
 	align-self: flex-end;
 	width: 7%;
 	padding-right: 3%;
 	color: #AAAAAA;
+	font-size: 12pt;
+	line-height: 20px;
 }
 
 .bottom-scale {
@@ -119,18 +159,23 @@ img {
 	padding-left: 10%;
 	width: 90%;
 	color: #AAAAAA;
+	font-size: 12pt;
 }
 
 #timestamp {
 	text-align: right;
 	margin-bottom: 0px;
 	color: #888888;
+	padding-top: 5%;
 }
 
 /* --- --- --- SMALL SCREENS --- --- --- */
 @media only screen and (max-width: 900px) {
 	.graph-container {
 		width: 96%;
+	}
+	#card {
+		padding: 0px;
 	}
 }
 
