@@ -110,11 +110,18 @@ function update_hourly_forecast(data) {
 function create_graphs(data) {
 	// initiate variables
 	var greatest = -9999;
+	var smallest = 9999;
 	var graph = "";
 	var i, j;
 	var g = 0;
 	var l = 0;
 	var b = 0;
+	var s;
+	var width;
+	var scale;
+	var height;
+	var zero_bar = 0;
+	var temp;
 
 	// get all the graphs
 	var graphs = document.getElementsByClassName("graph");
@@ -125,38 +132,49 @@ function create_graphs(data) {
 
 	// find greatest temperature
 	for (i = 0; i < data.cnt; i++) {
-		var cur = Math.abs(Math.round(data.list[i].main.temp));
+		var cur = Math.round(data.list[i].main.temp);
 		if (cur > greatest) greatest = cur;
 	}
 
-	// calculate graph height and scale based on the greatest temperature
-	var scale = greatest + 1;
-
-	// set the left scales
-	//j = greatest + 2;
-	while (scale >= -Math.abs(greatest + 1)) {
-		//if (j % 4 == 0) {
-			left_scales[0].innerHTML += '<div style="height: 20px;">' + scale + '&deg;</div>';
-			left_scales[1].innerHTML += '<div style="height: 20px;">' + scale + '&deg;</div>';
-			left_scales[2].innerHTML += '<div style="height: 20px;">' + scale + '&deg;</div>';
-			left_scales[3].innerHTML += '<div style="height: 20px;">' + scale + '&deg;</div>';
-			left_scales[4].innerHTML += '<div style="height: 20px;">' + scale + '&deg;</div>';
-			scale--;
-		//	j--;
-		//} else {
-		//	left_scales[0].innerHTML += '<div style="height: 20px;"></div>';
-		//	left_scales[1].innerHTML += '<div style="height: 20px;"></div>';
-		//	left_scales[2].innerHTML += '<div style="height: 20px;"></div>';
-		//	left_scales[3].innerHTML += '<div style="height: 20px;"></div>';
-		//	left_scales[4].innerHTML += '<div style="height: 20px;"></div>';
-		//	scale--;
-		//	j--;
-		//}
+	// find smallest temperature
+	for (i = 0; i < data.cnt; i++) {
+		var cur = Math.round(data.list[i].main.temp);
+		if (cur < smallest) smallest = cur;
 	}
 
-	// count
-	var count = 1;
-	var width;
+	// calculate graph height and scale based on the greatest and smallest temperature
+	scale = greatest;
+
+	// clear previous scales
+	left_scales[0].innerHTML = "";
+	left_scales[1].innerHTML = "";
+	left_scales[2].innerHTML = "";
+	left_scales[3].innerHTML = "";
+	left_scales[4].innerHTML = "";
+	bottom_scales[0].innerHTML = "";
+	bottom_scales[1].innerHTML = "";
+	bottom_scales[2].innerHTML = "";
+	bottom_scales[3].innerHTML = "";
+	bottom_scales[4].innerHTML = "";
+
+	// set the new scales
+	if (smallest < 1) {
+		while (scale > smallest - 1) {
+			for (s = 0; s < 5; s++) {
+				// add new scale
+					left_scales[s].innerHTML += '<div style="height: 20px;">' + scale + '&deg;</div>';
+			}
+			scale--;
+		}
+	} else {
+		while (scale > 0) {
+			for (s = 0; s < 5; s++) {
+				// add new scale
+					left_scales[s].innerHTML += '<div style="height: 20px;">' + scale + '&deg;</div>';
+			}
+			scale--;
+		}
+	}
 
 	// iterate through every temperature and populate graphs
 	for (i = 0; i < data.cnt; i++) {
@@ -165,24 +183,26 @@ function create_graphs(data) {
 		var timestamp = data.list[i].dt_txt.toString();
 
 		// set graph height and scale based on the greatest temperature
-		var height = 20 * (greatest + 2) * 2;
-		graphs[g].style.height = height + "px";
+		//height = 20 * greatest;
+		//graphs[g].style.height = height + "px";
 
 		// get temperature
-		var temp = Math.round(data.list[i].main.temp);
-		// initialize the height of the temperature bar to half of the graph's height
-		var temp_bar = height / 2;
+		temp = Math.round(data.list[i].main.temp);
+
+		if (smallest < 0) {
+			zero_bar = Math.abs(smallest) * 20 + 20;
+		} else zero_bar = 0;
 
 		width = 100 / 8;
 
 		// if the temperature is below zero then subtract
-		if (temp < 0) temp_bar -= Math.abs(temp) * 20;
+		if (temp < 0) zero_bar -= Math.abs(temp) * 20;
 		// if the temperature is above zero then add
-		else temp_bar += Math.abs(temp) * 20;
+		else zero_bar += Math.abs(temp) * 20;
 
 		// add bar to the graph
-		if (i % 2 == 0) graph += '<div class="graph-entry" style="height:' + temp_bar + 'px; background-color: #FF9C09; width:' + width + '%">' + temp + '</div>';
-		else graph += '<div class="graph-entry" style="height:' + temp_bar + 'px; width:' + width + '%">' + temp + '</div>';
+		if (i % 2 == 0) graph += '<div class="graph-entry" style="height:' + zero_bar + 'px; background-color: #FF9C09; width:' + width + '%">' + temp + '</div>';
+		else graph += '<div class="graph-entry" style="height:' + zero_bar + 'px; width:' + width + '%">' + temp + '</div>';
 
 		var time = parseInt(timestamp.substring(11,13), 10);
 		var timeDisplay;

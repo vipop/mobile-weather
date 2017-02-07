@@ -184,6 +184,7 @@ summary {
 	display: flex;
 	flex-wrap: wrap;
 	width: 90%;
+	align-self: flex-end;
 }
 
 .graph-entry {
@@ -191,7 +192,6 @@ summary {
 	background-color: #FFFFFF;
 	text-align: center;
 	color: #000000;
-	height: 50%;
 }
 
 .left-scale {
@@ -216,8 +216,9 @@ summary {
 
 #timestamp {
 	text-align: right;
-	margin-bottom: 0px;
 	color: #888888;
+	margin-top: 25px;
+	margin-bottom: 25px;
 }
 
 /* --- --- --- SMALL SCREENS --- --- --- */
