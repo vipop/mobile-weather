@@ -7,7 +7,6 @@ if (window.XMLHttpRequest) {
 	document.getElementsByTagName("body")[0].style["padding-top"] = "0px";
 	document.getElementsByTagName("body")[0].style["padding-bottom"] = "0px";
 	document.getElementsByTagName("header")[0].style["align-self"] = "center";
-	document.getElementsByTagName("header")[0].style["width"] = "100%";
 	document.getElementById("search-bar").focus();
 
 	document.getElementById("weather-icon").style.display = "none";
@@ -42,6 +41,7 @@ function get_weather() {
 function update_weather(data) {
 	document.getElementById("city-name").innerHTML = data.name;
 	document.getElementById("description").innerHTML = toTitleCase(data.weather[0].description);
+	document.getElementById("w-icon").src = "./images/" + data.weather[0].icon + ".png";
 	document.getElementById("temp").innerHTML = Math.round(data.main.temp) + "&deg;";
 	document.getElementById("humidity").innerHTML = "Humidity: " + data.main.humidity + "%";
 	document.getElementById("wind").innerHTML = "Wind: " + data.wind.speed + " km/h";
@@ -58,15 +58,37 @@ function update_weather(data) {
 	document.getElementsByTagName("body")[0].style["padding-right"] = "10%";
 	document.getElementsByTagName("body")[0].style["padding-top"] = "5%";
 
-	document.getElementById("weather-icon").style.display = "initial";
-	document.getElementById("city").style.display = "initial";
-	document.getElementById("temperature").style.display = "initial";
-	document.getElementById("main").style.display = "initial";
+	document.getElementsByTagName("body")[0].style["padding-top"]= "2%";
+	document.getElementById("search").style.width = "80%";
+	document.getElementById("search").style.display = "flex";
+	document.getElementById("search").style["flex-wrap"] = "wrap";
+	document.getElementById("search-bar").style.width = "60%";
+	document.getElementById("search-bar").style.margin = "0px";
+	document.getElementById("logo").style["font-size"] = "24pt";
+	document.getElementById("logo").style.width = "160px";
+	document.getElementById("logo").style.margin = "0px 10px 0px 0px";
+	document.getElementById("logo").style["align-self"]= "center";
+	document.getElementById("submit").style.margin = "0px 0px 0px 10px";
+	document.getElementById("weather-icon").style.display = "flex";
+	document.getElementById("city").style.display = "block";
+	document.getElementById("temperature").style.display = "flex";
+	document.getElementById("main").style.display = "block";
 }
 
 function update_forecast(data) {
+	var days = document.getElementsByClassName("forecast-day-title");
+	var icons = document.getElementsByClassName("forecast-icon");
 	var mins = document.getElementsByClassName("min");
 	var maxs = document.getElementsByClassName("max");
+	var i;
+
+	for (i = 0; i < 5; i++) {
+		var today = new Date();
+		var date = new Date();
+		date.setDate(today.getDate() + i);
+		days[i].innerHTML = date.toString().substring(4,10);
+		icons[i].src = "./images/" + data.list[i].weather[0].icon + ".png";
+	}
 
 	mins[0].innerHTML = Math.round(data.list[0].temp.min) + "&deg;";
 	mins[1].innerHTML = Math.round(data.list[1].temp.min) + "&deg;";
@@ -159,7 +181,7 @@ function create_graphs(data) {
 		else temp_bar += Math.abs(temp) * 20;
 
 		// add bar to the graph
-		if (i % 2 == 0) graph += '<div class="graph-entry" style="height:' + temp_bar + 'px; background-color: #ffa64d; width:' + width + '%">' + temp + '</div>';
+		if (i % 2 == 0) graph += '<div class="graph-entry" style="height:' + temp_bar + 'px; background-color: #FF9C09; width:' + width + '%">' + temp + '</div>';
 		else graph += '<div class="graph-entry" style="height:' + temp_bar + 'px; width:' + width + '%">' + temp + '</div>';
 
 		var time = parseInt(timestamp.substring(11,13), 10);

@@ -9,17 +9,20 @@
 	<body id="body">
 		<header>
 			<section id="search">
+				<section id="logo">
+					<h1>weather<color style="color: #FF9C09;">.</color></h1>
+				</section>
 				<input id="search-bar" type="text" name="city-search" placeholder="City name..." onkeypress="submit(event)" />
-				<input id="submit" type="submit" name="submit" onclick="get_weather()" value="Get weather"/>
-			</section>
-			<section id="weather-icon">
-				<img id="w-icon" src="./images/cloudy1.png" />
+				<input id="submit" type="submit" name="submit" onclick="get_weather()" value="get weather"/>
 			</section>
 			<section id="city">
 				<h1 id="city-name"></h1>
 				<h3 id="description"></h3>
 			</section>
 			<section id="temperature"><h1 id="temp">-10&deg;</h1></section>
+			<section id="weather-icon">
+				<img id="w-icon" src="./images/cloudy1.png" />
+			</section>
 		</header>
 		<main id="main">
 			<section id="information">
@@ -31,7 +34,7 @@
 			</section>
 			<section id="forecast">
 				<section class="day">
-					<h3 id="change-this" class="forecast-day-title">Today</h3>
+					<h3 class="forecast-day-title"></h3>
 					<div>
 						<img class="forecast-icon" src="./images/cloudy1.png" />
 					</div>
@@ -39,7 +42,7 @@
 					<p class="min">0&deg;</p>
 				</section>
 				<section class="day">
-					<h3 class="forecast-day-title">Tomorrow</h3>
+					<h3 class="forecast-day-title"></h3>
 					<div>
 						<img class="forecast-icon" src="./images/cloudy1.png" />
 					</div>
@@ -47,7 +50,7 @@
 					<p class="min">-2&deg;</p>
 				</section>
 				<section class="day">
-					<h3 class="forecast-day-title">Day 2</h3>
+					<h3 class="forecast-day-title"></h3>
 					<div>
 						<img class="forecast-icon" src="./images/cloudy1.png" />
 					</div>
@@ -55,7 +58,7 @@
 					<p class="min">-8&deg;</p>
 				</section>
 				<section class="day">
-					<h3 class="forecast-day-title">Day 3</h3>
+					<h3 class="forecast-day-title"></h3>
 					<div>
 						<img class="forecast-icon" src="./images/cloudy1.png" />
 					</div>
@@ -63,7 +66,7 @@
 					<p class="min">-3&deg;</p>
 				</section>
 				<section class="day">
-					<h3 class="forecast-day-title">Day 4</h3>
+					<h3 class="forecast-day-title"></h3>
 					<div>
 						<img class="forecast-icon" src="./images/cloudy1.png" />
 					</div>
