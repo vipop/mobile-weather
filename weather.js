@@ -25,7 +25,7 @@ function get_weather() {
 		}
 		update_weather(data);
 	});
-	getJSON("http://api.openweathermap.org/data/2.5/forecast/daily?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&cnt=5&units=metric", function(err, data) {
+	getJSON("http://api.openweathermap.org/data/2.5/forecast/daily?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&cnt=6&units=metric", function(err, data) {
 		if (err != null) {
 			console.log("Failed to read json data");
 		}
@@ -82,13 +82,18 @@ function update_forecast(data) {
 	var maxs = document.getElementsByClassName("max");
 	var i;
 
-	for (i = 0; i < 5; i++) {
-		var today = new Date();
-		var date = new Date();
-		date.setDate(today.getDate() + i);
-		days[i].innerHTML = date.toString().substring(4,10);
-		days[i+5].innerHTML = date.toString().substring(4,10);
-		icons[i].src = "./images/" + data.list[i].weather[0].icon + ".png";
+	for (i = 1; i < 6; i++) {
+		var firstdate = parseInt(data.list[i].dt);
+		var date = new Date(0);
+		date.setUTCSeconds(firstdate);
+
+		var month = date.getUTCMonth();
+
+		var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+		days[i-1].innerHTML = months[month] + " " + date.getUTCDate();
+		days[i+4].innerHTML = months[month] + " " + date.getUTCDate();
+		icons[i-1].src = "./images/" + data.list[i].weather[0].icon + ".png";
 	}
 
 	mins[0].innerHTML = Math.round(data.list[0].temp.min) + "&deg;";
