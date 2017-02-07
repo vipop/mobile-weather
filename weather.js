@@ -87,6 +87,7 @@ function update_forecast(data) {
 		var date = new Date();
 		date.setDate(today.getDate() + i);
 		days[i].innerHTML = date.toString().substring(4,10);
+		days[i+5].innerHTML = date.toString().substring(4,10);
 		icons[i].src = "./images/" + data.list[i].weather[0].icon + ".png";
 	}
 

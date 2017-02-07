@@ -133,6 +133,7 @@ main {
 
 .forecast-day-title {
 	text-align: center;
+	width: 100%;
 }
 
 .forecast-icon {
