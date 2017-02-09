@@ -1,4 +1,5 @@
 var onMainPage = true;
+var unit = "\xB0C";
 
 if (window.XMLHttpRequest) {
 
@@ -165,7 +166,7 @@ function media() {
 		document.getElementById("s").style.width = "70%";
 		document.getElementById("submit").style["margin"] = "0px 0px 0px 10px";
 		// set city name and weather description
-		document.getElementById("city").style.width = "69%";
+		document.getElementById("city").style.width = "65%";
 		document.getElementById("city-name").style["font-size"] = "64pt";
 		document.getElementById("city-name").style["text-align"] = "left";
 		document.getElementById("description").style["text-align"] = "left";
@@ -186,6 +187,11 @@ function media() {
 
 function get_weather() {
 	onMainPage = false;
+	if (document.getElementById("unit").checked == false) {
+		unit = "\xB0C";
+	} else {
+		unit = "\xB0F";
+	}
 	var bar = document.getElementById("search-bar");
 	var x = bar.value;
 	if (document.getElementById("unit").checked == true) {
@@ -247,10 +253,11 @@ function get_weather() {
 }
 
 function update_weather(data) {
+
 	document.getElementById("city-name").innerHTML = data.name;
 	document.getElementById("description").innerHTML = toTitleCase(data.weather[0].description);
 	document.getElementById("w-icon").src = "./images/" + data.weather[0].icon + ".png";
-	document.getElementById("temp").innerHTML = Math.round(data.main.temp) + "&deg;";
+	document.getElementById("temp").innerHTML = Math.round(data.main.temp) + unit;
 	document.getElementById("humidity").innerHTML = "Humidity: " + data.main.humidity + "%";
 	if (document.getElementById("unit").checked == true) {
 		document.getElementById("wind").innerHTML = "Wind: " + data.wind.speed + " mph";
@@ -284,17 +291,17 @@ function update_forecast(data) {
 		icons[i-1].src = "./images/" + data.list[i].weather[0].icon + ".png";
 	}
 
-	mins[0].innerHTML = Math.round(data.list[0].temp.min) + "&deg;";
-	mins[1].innerHTML = Math.round(data.list[1].temp.min) + "&deg;";
-	mins[2].innerHTML = Math.round(data.list[2].temp.min) + "&deg;";
-	mins[3].innerHTML = Math.round(data.list[3].temp.min) + "&deg;";
-	mins[4].innerHTML = Math.round(data.list[4].temp.min) + "&deg;";
+	mins[0].innerHTML = Math.round(data.list[0].temp.min) + unit;
+	mins[1].innerHTML = Math.round(data.list[1].temp.min) + unit;
+	mins[2].innerHTML = Math.round(data.list[2].temp.min) + unit;
+	mins[3].innerHTML = Math.round(data.list[3].temp.min) + unit;
+	mins[4].innerHTML = Math.round(data.list[4].temp.min) + unit;
 
-	maxs[0].innerHTML = Math.round(data.list[0].temp.max) + "&deg;";
-	maxs[1].innerHTML = Math.round(data.list[1].temp.max) + "&deg;";
-	maxs[2].innerHTML = Math.round(data.list[2].temp.max) + "&deg;";
-	maxs[3].innerHTML = Math.round(data.list[3].temp.max) + "&deg;";
-	maxs[4].innerHTML = Math.round(data.list[4].temp.max) + "&deg;";
+	maxs[0].innerHTML = Math.round(data.list[0].temp.max) + unit;
+	maxs[1].innerHTML = Math.round(data.list[1].temp.max) + unit;
+	maxs[2].innerHTML = Math.round(data.list[2].temp.max) + unit;
+	maxs[3].innerHTML = Math.round(data.list[3].temp.max) + unit;
+	maxs[4].innerHTML = Math.round(data.list[4].temp.max) + unit;
 }
 
 function update_hourly_forecast(data) {
@@ -357,7 +364,7 @@ function create_graphs(data) {
 		while (scale > smallest - 1) {
 			for (s = 0; s < 5; s++) {
 				// add new scale
-					left_scales[s].innerHTML += '<div style="height: 20px;">' + scale + '&deg;</div>';
+					left_scales[s].innerHTML += '<div style="height: 20px;">' + scale + unit + '</div>';
 			}
 			scale--;
 		}
@@ -365,7 +372,7 @@ function create_graphs(data) {
 		while (scale > 0) {
 			for (s = 0; s < 5; s++) {
 				// add new scale
-					left_scales[s].innerHTML += '<div style="height: 20px;">' + scale + '&deg;</div>';
+					left_scales[s].innerHTML += '<div style="height: 20px;">' + scale + unit + '</div>';
 			}
 			scale--;
 		}
