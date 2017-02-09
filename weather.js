@@ -186,70 +186,72 @@ function media() {
 }
 
 function get_weather() {
-	onMainPage = false;
-	if (document.getElementById("unit").checked == false) {
-		unit = "\xB0C";
-	} else {
-		unit = "\xB0F";
-	}
 	var bar = document.getElementById("search-bar");
 	var x = bar.value;
-	if (document.getElementById("unit").checked == true) {
-		getJSON("http://api.openweathermap.org/data/2.5/weather?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&units=imperial", function(err, data) {
-			if (err != null) {
-				console.log("Failed to read json data");
-			}
-			update_weather(data);
-		});
-		getJSON("http://api.openweathermap.org/data/2.5/forecast/daily?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&cnt=6&units=imperial", function(err, data) {
-			if (err != null) {
-				console.log("Failed to read json data");
-			}
-			update_forecast(data);
-		});
-		getJSON("http://api.openweathermap.org/data/2.5/forecast?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&units=imperial", function(err, data) {
-			if (err != null) {
-				console.log("Failed to read json data");
-			} else update_hourly_forecast(data);
-		});
-	} else {
-		getJSON("http://api.openweathermap.org/data/2.5/weather?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&units=metric", function(err, data) {
-			if (err != null) {
-				console.log("Failed to read json data");
-			}
-			update_weather(data);
-		});
-		getJSON("http://api.openweathermap.org/data/2.5/forecast/daily?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&cnt=6&units=metric", function(err, data) {
-			if (err != null) {
-				console.log("Failed to read json data");
-			}
-			update_forecast(data);
-		});
-		getJSON("http://api.openweathermap.org/data/2.5/forecast?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&units=metric", function(err, data) {
-			if (err != null) {
-				console.log("Failed to read json data");
-			} else update_hourly_forecast(data);
-		});
-	}
+	if (x != "") {
+		onMainPage = false;
+		if (document.getElementById("unit").checked == false) {
+			unit = "\xB0C";
+		} else {
+			unit = "\xB0F";
+		}
+		if (document.getElementById("unit").checked == true) {
+			getJSON("http://api.openweathermap.org/data/2.5/weather?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&units=imperial", function(err, data) {
+				if (err != null) {
+					console.log("Failed to read json data");
+				}
+				update_weather(data);
+			});
+			getJSON("http://api.openweathermap.org/data/2.5/forecast/daily?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&cnt=6&units=imperial", function(err, data) {
+				if (err != null) {
+					console.log("Failed to read json data");
+				}
+				update_forecast(data);
+			});
+			getJSON("http://api.openweathermap.org/data/2.5/forecast?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&units=imperial", function(err, data) {
+				if (err != null) {
+					console.log("Failed to read json data");
+				} else update_hourly_forecast(data);
+			});
+		} else {
+			getJSON("http://api.openweathermap.org/data/2.5/weather?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&units=metric", function(err, data) {
+				if (err != null) {
+					console.log("Failed to read json data");
+				}
+				update_weather(data);
+			});
+			getJSON("http://api.openweathermap.org/data/2.5/forecast/daily?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&cnt=6&units=metric", function(err, data) {
+				if (err != null) {
+					console.log("Failed to read json data");
+				}
+				update_forecast(data);
+			});
+			getJSON("http://api.openweathermap.org/data/2.5/forecast?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&units=metric", function(err, data) {
+				if (err != null) {
+					console.log("Failed to read json data");
+				} else update_hourly_forecast(data);
+			});
+		}
 
-	media();
-	// values once button is clicked
-	document.getElementById("search").style["flex-wrap"] = "nowrap";
-	document.getElementById("weather-icon").style.display = "flex";
-	document.getElementById("city").style.display = "block";
-	document.getElementById("temperature").style.display = "flex";
-	document.getElementById("main").style.display = "block";
-	document.getElementsByTagName("html")[0].style.height = "100%";
-	document.getElementsByTagName("body")[0].style.height = "100%";
-	document.getElementsByTagName("body")[0].style.display = "block";
-	document.getElementsByTagName("body")[0].style["justify-content"] = "center";
-	document.getElementsByTagName("body")[0].style["padding-top"] = "0px";
-	document.getElementsByTagName("body")[0].style["padding-bottom"] = "0px";
-	document.getElementsByTagName("body")[0].style["padding-top"]= "2%";
-	document.getElementById("submit").style.margin = "0px 0px 0px 10px";
-	document.getElementById("s").style.width = "70%";
-	document.getElementById("s").style["justify-content"] = "";
-	document.getElementById("search-bar").style.width = "100%";
+		media();
+		// values once button is clicked
+		document.getElementById("search").style["flex-wrap"] = "nowrap";
+		document.getElementById("weather-icon").style.display = "flex";
+		document.getElementById("city").style.display = "block";
+		document.getElementById("temperature").style.display = "flex";
+		document.getElementById("main").style.display = "block";
+		document.getElementsByTagName("html")[0].style.height = "100%";
+		document.getElementsByTagName("body")[0].style.height = "100%";
+		document.getElementsByTagName("body")[0].style.display = "block";
+		document.getElementsByTagName("body")[0].style["justify-content"] = "center";
+		document.getElementsByTagName("body")[0].style["padding-top"] = "0px";
+		document.getElementsByTagName("body")[0].style["padding-bottom"] = "0px";
+		document.getElementsByTagName("body")[0].style["padding-top"]= "2%";
+		document.getElementById("submit").style.margin = "0px 0px 0px 10px";
+		document.getElementById("s").style.width = "70%";
+		document.getElementById("s").style["justify-content"] = "";
+		document.getElementById("search-bar").style.width = "100%";
+	}
 }
 
 function update_weather(data) {
