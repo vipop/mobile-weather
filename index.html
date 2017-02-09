@@ -6,13 +6,19 @@
 		<title>Weather App</title>
 		<link rel="stylesheet" type="text/css" href="styles.css">
 	</head>
-	<body id="body">
+	<body id="body" onresize="media()">
 		<header>
 			<section id="search">
 				<section id="logo">
 					<h1>weather<color style="color: #FF9C09;">.</color></h1>
 				</section>
-				<input id="search-bar" type="text" name="city-search" placeholder="City name..." onkeypress="submit(event)" />
+				<section id="s">
+					<input id="search-bar" type="text" name="city-search" placeholder="city name..." onkeypress="submit(event)" />
+					<label class="switch">
+						<input id="unit" type="checkbox" onchange="toggle()"/>
+						<div class="slider"></div>
+					</label>
+				</section>
 				<input id="submit" type="submit" name="submit" onclick="get_weather()" value="get weather"/>
 			</section>
 			<section id="city">
@@ -75,7 +81,7 @@
 				</section>
 			</section>
 			<details id="hourly-forecast">
-				<summary id="hourly-title">5-Day Hourly Forecast</summary>
+				<summary id="hourly-title">5-Day Forecast Graphs *</summary>
 				<section id="graphs">
 					<section class="graph-container">
 						<h3 class="forecast-day-title"></h3>
@@ -108,6 +114,7 @@
 						<section class="bottom-scale"></section>
 					</section>
 				</section>
+				<p>* note: all graphs are in UTC times</p>
 			</details>
 			<p id="timestamp"></p>
 		</main>

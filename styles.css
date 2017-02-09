@@ -3,9 +3,6 @@ body {
 	color: #FFFFFF;
 	font-size: 16pt;
 	margin: 0px;
-	padding-left: 10%;
-	padding-right: 10%;
-	padding-top: 5%;
 }
 
 h1 {
@@ -42,31 +39,37 @@ header {
 }
 
 #search {
+	display: flex;
+	flex-wrap: wrap;
 	width: 80%;
     padding-bottom: 50px;
 }
 
+#s {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+}
+
 #search-bar {
-	width: 80%;
+	width: 70%;
     border: none;
-    height: 20pt;
+    height: 26px;
     border-radius: 3pt;
     font-size: 16pt;
     padding: 10px;
 	outline: none;
-	margin-left: auto;
-	margin-right: auto;
 	display: block;
 }
 
 #submit {
+	height: 46px;
 	width: 170px;
 	border-radius: 3pt;
 	background-color: #FF9C09;
-	margin-left: 25px;
 	font-size: 16pt;
 	outline: none;
-	margin-top: 2%;
+	margin-top: 15px;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	color: #FFFFFF;
@@ -77,13 +80,12 @@ header {
 }
 
 #city {
+	display: none;
 	font-size: 56pt;
-	width: 80%;
 }
 
 #weather-icon {
-	width: 10%;
-	display: flex;
+	display: none;
 }
 
 #w-icon {
@@ -97,10 +99,9 @@ header {
 }
 
 #temperature {
-	display: flex;
+	display: none;
 	text-align: center;
 	font-size: 48pt;
-	width: 10%;
 }
 
 #temp {
@@ -109,6 +110,7 @@ header {
 
 #information {
 	display: flex;
+	flex-wrap: wrap;
 	margin-top: 2%;
 	margin-bottom: 1%;
 	font-size: 20pt;
@@ -116,6 +118,7 @@ header {
 
 main {
 	margin-top: 20px;
+	display: none;
 }
 
 .info {
@@ -125,10 +128,7 @@ main {
 
 #forecast {
 	display: flex;
-}
-
-.day {
-	width: 20%;
+	flex-wrap: wrap;
 }
 
 .forecast-day-title {
@@ -180,7 +180,6 @@ summary {
 }
 
 .graph {
-	background-image: url("images/graph_bg.jpg");
 	background-repeat: repeat;
 	display: flex;
 	flex-wrap: wrap;
@@ -222,26 +221,45 @@ summary {
 	margin-bottom: 25px;
 }
 
-/* --- --- --- SMALL SCREENS --- --- --- */
-@media only screen and (max-width: 900px) {
-	.graph-container {
-		width: 96%;
-	}
-	#card {
-		padding: 0px;
-	}
+.switch {
+	display: block;
+	margin-left: 10px;
+	width: 116px;
+	color: #AAAAAA;
+	background-color: #FFFFFF;
+	border-radius: 3pt;
+	padding: 6px;
+	text-align: center;
 }
 
-/* --- --- --- MEDIUM SCREENS --- --- --- */
-@media only screen and (min-width: 900px) and (max-width: 1440px) {
-	.graph-container {
-		width: 43%;
-	}
+.switch input {
+	display:none;
 }
 
-/* --- --- --- LARGE SCREENS --- --- --- */
-@media only screen and (min-width: 1440px) {
-	.graph-container {
-		width: 29.333%;
-	}
+.slider {
+  cursor: pointer;
+  background-color: #FFFFFF;
+  border-radius: 3pt;
+}
+
+.slider:before {
+	display: block;
+	height: 34px;
+	background-color: #FFFFFF;
+	content: "celsius";
+	text-align: center;
+	border-radius: 2pt;
+	line-height: 34px;
+}
+
+input:checked + .slider {
+  background-color: #FFFFFF;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #FFFFFF;
+}
+
+input:checked + .slider:before {
+  content: "fahreinheit";
 }

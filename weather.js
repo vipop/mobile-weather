@@ -1,3 +1,5 @@
+var onMainPage = true;
+
 if (window.XMLHttpRequest) {
 
 	document.getElementsByTagName("html")[0].style.height = "100%";
@@ -9,33 +11,239 @@ if (window.XMLHttpRequest) {
 	document.getElementsByTagName("header")[0].style["align-self"] = "center";
 	document.getElementById("search-bar").focus();
 
-	document.getElementById("weather-icon").style.display = "none";
-	document.getElementById("city").style.display = "none";
-	document.getElementById("temperature").style.display = "none";
-	document.getElementById("main").style.display = "none";
+}
 
+function media() {
+	var ds, gs, i;
+
+	// PHONE
+	if (document.documentElement.clientWidth < 480) {
+		// set body padding
+		document.getElementsByTagName("body")[0].style["padding-left"] = "5%";
+		document.getElementsByTagName("body")[0].style["padding-right"] = "5%";
+		// set header
+		document.getElementsByTagName("header")[0].style.width = "100%";
+		// set logo, search bar and submit button
+		document.getElementById("logo").style.width = "100%";
+		document.getElementById("logo").style["font-size"] = "48pt";
+		document.getElementById("logo").style["margin-bottom"] = "15px";
+		document.getElementById("search").style["flex-wrap"] = "wrap";
+		document.getElementById("s").style.width = "100%";
+		document.getElementById("submit").style["margin"] = "15px auto 0px auto";
+		// set city name and weather description
+		document.getElementById("city").style.width = "100%";
+		document.getElementById("city-name").style["font-size"] = "42pt";
+		document.getElementById("city-name").style["text-align"] = "center";
+		document.getElementById("description").style["text-align"] = "center";
+		// set temperature and weather icon
+		document.getElementById("temperature").style.width = "auto";
+		document.getElementById("weather-icon").style.width = "auto";
+		// set graph width
+		gs = document.getElementsByClassName("graph-container");
+		for (i = 0; i < 5; i++) gs[i].style.width = "96%";
+		// set forecast width
+		ds = document.getElementsByClassName("day");
+		for (i = 0; i < 5; i++) ds[i].style.width = "100%";
+		// set wind and humidity
+		document.getElementById("wind").style.width = "100%";
+		document.getElementById("humidity").style.width = "100%";
+	}
+	// TABLET
+	else if (document.documentElement.clientWidth > 480 && document.documentElement.clientWidth < 900) {
+		// set body padding
+		document.getElementsByTagName("body")[0].style["padding-left"] = "5%";
+		document.getElementsByTagName("body")[0].style["padding-right"] = "5%";
+		// set header
+		document.getElementsByTagName("header")[0].style.width = "85%";
+		// set logo and search bar
+		document.getElementById("logo").style.width = "100%";
+		document.getElementById("logo").style["font-size"] = "48pt";
+		document.getElementById("logo").style["margin-bottom"] = "15px";
+		document.getElementById("search").style["flex-wrap"] = "wrap";
+		document.getElementById("s").style.width = "100%";
+		document.getElementById("submit").style["margin"] = "15px auto 0px auto";
+		// set city name and weather description
+		document.getElementById("city").style.width = "100%";
+		document.getElementById("city-name").style["font-size"] = "48pt";
+		document.getElementById("city-name").style["text-align"] = "center";
+		document.getElementById("description").style["text-align"] = "center";
+		// set temperature and weather icon
+		document.getElementById("temperature").style.width = "auto";
+		document.getElementById("weather-icon").style.width = "auto";
+		// set graph width
+		gs = document.getElementsByClassName("graph-container");
+		for (i = 0; i < 5; i++) gs[i].style.width = "96%";
+		// set forecast width
+		ds = document.getElementsByClassName("day");
+		for (i = 0; i < 4; i++) ds[i].style.width = "50%";
+		ds[4].style.width = "100%";
+		// set wind and humidity
+		document.getElementById("wind").style.width = "50%";
+		document.getElementById("humidity").style.width = "50%";
+	}
+	// SMALL DESKTOP
+	else if (document.documentElement.clientWidth > 900 && document.documentElement.clientWidth < 1200) {
+		// set body padding
+		document.getElementsByTagName("body")[0].style["padding-left"] = "10%";
+		document.getElementsByTagName("body")[0].style["padding-right"] = "10%";
+		// set header
+		document.getElementsByTagName("header")[0].style.width = "85%";
+		// set logo and search bar
+		document.getElementById("logo").style.width = "100%";
+		document.getElementById("logo").style["font-size"] = "48pt";
+		document.getElementById("logo").style["margin-bottom"] = "15px";
+		document.getElementById("search").style["flex-wrap"] = "wrap";
+		document.getElementById("s").style.width = "100%";
+		document.getElementById("submit").style["margin"] = "15px auto 0px auto";
+		// set city name and weather description
+		document.getElementById("city").style.width = "100%";
+		document.getElementById("city-name").style["font-size"] = "54pt";
+		document.getElementById("city-name").style["text-align"] = "center";
+		document.getElementById("description").style["text-align"] = "center";
+		// set temperature and weather icon
+		document.getElementById("temperature").style.width = "auto";
+		document.getElementById("weather-icon").style.width = "auto";
+		// set graph width
+		gs = document.getElementsByClassName("graph-container");
+		for (i = 0; i < 5; i++) gs[i].style.width = "46%";
+		// set forecast width
+		ds = document.getElementsByClassName("day");
+		ds[0].style.width = "50%";
+		ds[1].style.width = "50%";
+		for (i = 2; i < 5; i++) ds[i].style.width = "33.3%";
+		// set wind and humidity
+		document.getElementById("wind").style.width = "50%";
+		document.getElementById("humidity").style.width = "50%";
+	}
+	// DESKTOP
+	else if (document.documentElement.clientWidth > 1200 && document.documentElement.clientWidth < 1440) {
+		// set body padding
+		document.getElementsByTagName("body")[0].style["padding-left"] = "10%";
+		document.getElementsByTagName("body")[0].style["padding-right"] = "10%";
+		// set header
+		document.getElementsByTagName("header")[0].style.width = "85%";
+		// set logo and search bar
+		document.getElementById("logo").style.width = "100%";
+		document.getElementById("logo").style["font-size"] = "48pt";
+		document.getElementById("logo").style["margin-bottom"] = "15px";
+		document.getElementById("search").style["flex-wrap"] = "wrap";
+		document.getElementById("s").style.width = "70%";
+		document.getElementById("submit").style["margin"] = "0px 0px 0px 10px";
+		// set city name and weather description
+		document.getElementById("city").style.width = "60%";
+		document.getElementById("city-name").style["font-size"] = "54pt";
+		document.getElementById("city-name").style["text-align"] = "left";
+		document.getElementById("description").style["text-align"] = "left";
+		// set temperature and weather icon
+		document.getElementById("temperature").style.width = "auto";
+		document.getElementById("weather-icon").style.width = "auto";
+		// set graph width
+		gs = document.getElementsByClassName("graph-container");
+		for (i = 0; i < 5; i++) gs[i].style.width = "46%";
+		// set forecast width
+		ds = document.getElementsByClassName("day");
+		ds[0].style.width = "50%";
+		ds[1].style.width = "50%";
+		for (i = 2; i < 5; i++) ds[i].style.width = "33.3%";
+		// set wind and humidity
+		document.getElementById("wind").style.width = "50%";
+		document.getElementById("humidity").style.width = "50%";
+	}
+	// LARGE DESKTOP
+	else if (document.documentElement.clientWidth > 1440) {
+		// set body padding
+		document.getElementsByTagName("body")[0].style["padding-left"] = "10%";
+		document.getElementsByTagName("body")[0].style["padding-right"] = "10%";
+		// set header
+		document.getElementsByTagName("header")[0].style.width = "85%";
+		// set logo and search bar
+		document.getElementById("logo").style["margin-bottom"] = "0px";
+		document.getElementById("search").style["flex-wrap"] = "nowrap";
+		document.getElementById("logo").style["font-size"] = "24pt";
+		document.getElementById("logo").style.width = "160px";
+		document.getElementById("logo").style.margin = "0px 10px 0px 0px";
+		document.getElementById("s").style.width = "70%";
+		document.getElementById("submit").style["margin"] = "0px 0px 0px 10px";
+		// set city name and weather description
+		document.getElementById("city").style.width = "69%";
+		document.getElementById("city-name").style["font-size"] = "64pt";
+		document.getElementById("city-name").style["text-align"] = "left";
+		document.getElementById("description").style["text-align"] = "left";
+		// set temperature and weather icon
+		document.getElementById("temperature").style.width = "auto";
+		document.getElementById("weather-icon").style.width = "auto";
+		// set graph width
+		gs = document.getElementsByClassName("graph-container");
+		for (i = 0; i < 5; i++) gs[i].style.width = "29.3%";
+		// set forecast width
+		ds = document.getElementsByClassName("day");
+		for (i = 0; i < 5; i++) ds[i].style.width = "20%";
+		// set wind and humidity
+		document.getElementById("wind").style.width = "50%";
+		document.getElementById("humidity").style.width = "50%";
+	}
 }
 
 function get_weather() {
+	onMainPage = false;
 	var bar = document.getElementById("search-bar");
 	var x = bar.value;
-	getJSON("http://api.openweathermap.org/data/2.5/weather?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&units=metric", function(err, data) {
-		if (err != null) {
-			console.log("Failed to read json data");
-		}
-		update_weather(data);
-	});
-	getJSON("http://api.openweathermap.org/data/2.5/forecast/daily?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&cnt=6&units=metric", function(err, data) {
-		if (err != null) {
-			console.log("Failed to read json data");
-		}
-		update_forecast(data);
-	});
-	getJSON("http://api.openweathermap.org/data/2.5/forecast?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&units=metric", function(err, data) {
-		if (err != null) {
-			console.log("Failed to read json data");
-		} else update_hourly_forecast(data);
-	});
+	if (document.getElementById("unit").checked == true) {
+		getJSON("http://api.openweathermap.org/data/2.5/weather?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&units=imperial", function(err, data) {
+			if (err != null) {
+				console.log("Failed to read json data");
+			}
+			update_weather(data);
+		});
+		getJSON("http://api.openweathermap.org/data/2.5/forecast/daily?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&cnt=6&units=imperial", function(err, data) {
+			if (err != null) {
+				console.log("Failed to read json data");
+			}
+			update_forecast(data);
+		});
+		getJSON("http://api.openweathermap.org/data/2.5/forecast?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&units=imperial", function(err, data) {
+			if (err != null) {
+				console.log("Failed to read json data");
+			} else update_hourly_forecast(data);
+		});
+	} else {
+		getJSON("http://api.openweathermap.org/data/2.5/weather?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&units=metric", function(err, data) {
+			if (err != null) {
+				console.log("Failed to read json data");
+			}
+			update_weather(data);
+		});
+		getJSON("http://api.openweathermap.org/data/2.5/forecast/daily?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&cnt=6&units=metric", function(err, data) {
+			if (err != null) {
+				console.log("Failed to read json data");
+			}
+			update_forecast(data);
+		});
+		getJSON("http://api.openweathermap.org/data/2.5/forecast?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&units=metric", function(err, data) {
+			if (err != null) {
+				console.log("Failed to read json data");
+			} else update_hourly_forecast(data);
+		});
+	}
+
+	media();
+	// values once button is clicked
+	document.getElementById("search").style["flex-wrap"] = "nowrap";
+	document.getElementById("weather-icon").style.display = "flex";
+	document.getElementById("city").style.display = "block";
+	document.getElementById("temperature").style.display = "flex";
+	document.getElementById("main").style.display = "block";
+	document.getElementsByTagName("html")[0].style.height = "100%";
+	document.getElementsByTagName("body")[0].style.height = "100%";
+	document.getElementsByTagName("body")[0].style.display = "block";
+	document.getElementsByTagName("body")[0].style["justify-content"] = "center";
+	document.getElementsByTagName("body")[0].style["padding-top"] = "0px";
+	document.getElementsByTagName("body")[0].style["padding-bottom"] = "0px";
+	document.getElementsByTagName("body")[0].style["padding-top"]= "2%";
+	document.getElementById("submit").style.margin = "0px 0px 0px 10px";
+	document.getElementById("s").style.width = "70%";
+	document.getElementById("s").style["justify-content"] = "";
+	document.getElementById("search-bar").style.width = "100%";
 }
 
 function update_weather(data) {
@@ -44,35 +252,15 @@ function update_weather(data) {
 	document.getElementById("w-icon").src = "./images/" + data.weather[0].icon + ".png";
 	document.getElementById("temp").innerHTML = Math.round(data.main.temp) + "&deg;";
 	document.getElementById("humidity").innerHTML = "Humidity: " + data.main.humidity + "%";
-	document.getElementById("wind").innerHTML = "Wind: " + data.wind.speed + " km/h";
+	if (document.getElementById("unit").checked == true) {
+		document.getElementById("wind").innerHTML = "Wind: " + data.wind.speed + " m/h";
+	} else {
+		document.getElementById("wind").innerHTML = "Wind: " + data.wind.speed + " km/h";
+	}
+
 	document.getElementById("timestamp").innerHTML =  Date();
 
-	document.getElementsByTagName("html")[0].style.height = "initial";
-	document.getElementsByTagName("body")[0].style.height = "initial";
-	document.getElementsByTagName("body")[0].style.display = "block";
-	document.getElementsByTagName("body")[0].style["justify-content"] = "initial";
-	document.getElementsByTagName("body")[0].style["padding-top"] = "intial";
-	document.getElementsByTagName("body")[0].style["padding-bottom"] = "0px";
-	document.getElementsByTagName("body")[0].style["align-self"] = "initial";
-	document.getElementsByTagName("body")[0].style["padding-left"] = "10%";
-	document.getElementsByTagName("body")[0].style["padding-right"] = "10%";
-	document.getElementsByTagName("body")[0].style["padding-top"] = "5%";
-
-	document.getElementsByTagName("body")[0].style["padding-top"]= "2%";
-	document.getElementById("search").style.width = "80%";
-	document.getElementById("search").style.display = "flex";
-	document.getElementById("search").style["flex-wrap"] = "wrap";
-	document.getElementById("search-bar").style.width = "60%";
-	document.getElementById("search-bar").style.margin = "0px";
-	document.getElementById("logo").style["font-size"] = "24pt";
-	document.getElementById("logo").style.width = "160px";
-	document.getElementById("logo").style.margin = "0px 10px 0px 0px";
-	document.getElementById("logo").style["align-self"]= "center";
-	document.getElementById("submit").style.margin = "0px 0px 0px 10px";
-	document.getElementById("weather-icon").style.display = "flex";
-	document.getElementById("city").style.display = "block";
-	document.getElementById("temperature").style.display = "flex";
-	document.getElementById("main").style.display = "block";
+	media();
 }
 
 function update_forecast(data) {
@@ -114,6 +302,7 @@ function update_hourly_forecast(data) {
 }
 
 function create_graphs(data) {
+
 	// initiate variables
 	var greatest = -9999;
 	var smallest = 9999;
@@ -184,66 +373,69 @@ function create_graphs(data) {
 
 	// iterate through every temperature and populate graphs
 	for (i = 0; i < data.cnt; i++) {
-		//count++;
-		// get the time of the data
-		var timestamp = data.list[i].dt_txt.toString();
+		var today = new Date();
+		var d = today.getUTCDate();
 
-		// set graph height and scale based on the greatest temperature
-		//height = 20 * greatest;
-		//graphs[g].style.height = height + "px";
+		var dataD = data.list[i].dt_txt;
+		var dd = parseInt(dataD.substring(8,11), 10);
 
-		// get temperature
-		temp = Math.round(data.list[i].main.temp);
+		if (dd > d) {
+			// get the time of the data
+			var timestamp = data.list[i].dt_txt.toString();
 
-		if (smallest < 0) {
-			zero_bar = Math.abs(smallest) * 20 + 20;
-		} else zero_bar = 0;
+			// get temperature
+			temp = Math.round(data.list[i].main.temp);
 
-		width = 100 / 8;
+			if (smallest < 0) {
+				zero_bar = Math.abs(smallest) * 20 + 20;
+			} else zero_bar = 0;
 
-		// if the temperature is below zero then subtract
-		if (temp < 0) zero_bar -= Math.abs(temp) * 20;
-		// if the temperature is above zero then add
-		else zero_bar += Math.abs(temp) * 20;
+			width = 100 / 8;
 
-		// add bar to the graph
-		if (i % 2 == 0) graph += '<div class="graph-entry" style="height:' + zero_bar + 'px; background-color: #FF9C09; width:' + width + '%">' + temp + '</div>';
-		else graph += '<div class="graph-entry" style="height:' + zero_bar + 'px; width:' + width + '%">' + temp + '</div>';
+			// if the temperature is below zero then subtract
+			if (temp < 0) zero_bar -= Math.abs(temp) * 20;
+			// if the temperature is above zero then add
+			else zero_bar += Math.abs(temp) * 20;
 
-		var time = parseInt(timestamp.substring(11,13), 10);
-		var timeDisplay;
-		var timePeriod;
+			// add bar to the graph
+			if (i % 2 == 0) graph += '<div class="graph-entry" style="height:' + zero_bar + 'px; background-color: #FF9C09; width:' + width + '%">' + temp + '</div>';
+			else graph += '<div class="graph-entry" style="height:' + zero_bar + 'px; width:' + width + '%">' + temp + '</div>';
 
-		if (time == 0) {
-			timePeriod = "AM";
-			timeDisplay = 12;
-		}
-		else if (time > 0 && time < 12) {
-			timePeriod = "AM";
-			timeDisplay = time;
-		}
-		else if (time == 12) {
-			timePeriod = "PM";
-			timeDisplay = time;
-		}
-		else {
-			timePeriod = "PM";
-			timeDisplay = time % 12;
-		}
+			var time = parseInt(timestamp.substring(11,13), 10);
+			var timeDisplay;
+			var timePeriod;
 
-		// set bottom scale
-		bottom_scales[b].innerHTML += '<div style="width: ' + width + '%;">' + timeDisplay + ':00<br />' + timePeriod + '</div>';
+			if (time == 0) {
+				timePeriod = "AM";
+				timeDisplay = 12;
+			}
+			else if (time > 0 && time < 12) {
+				timePeriod = "AM";
+				timeDisplay = time;
+			}
+			else if (time == 12) {
+				timePeriod = "PM";
+				timeDisplay = time;
+			}
+			else {
+				timePeriod = "PM";
+				timeDisplay = time % 12;
+			}
 
-		if (i + 1 == data.cnt || data.list[i+1].dt_txt.toString().substring(11,13) == "00") {
-				graphs[g++].innerHTML = graph;
-				scale = greatest + 1;
-				graph = "";
-				l++;
-				b++;
+			// set bottom scale
+			bottom_scales[b].innerHTML += '<div style="width: ' + width + '%;">' + timeDisplay + ':00<br />' + timePeriod + '</div>';
+
+			if (i + 1 == data.cnt || data.list[i+1].dt_txt.toString().substring(11,13) == "00") {
+					graphs[g++].innerHTML = graph;
+					scale = greatest + 1;
+					graph = "";
+					l++;
+					b++;
+			}
+
 		}
 
 	}
-
 }
 
 function getJSON(url, callback) {
@@ -261,9 +453,16 @@ function getJSON(url, callback) {
 	xhr.send();
 };
 
+function toggle() {
+	if (onMainPage == false) {
+		document.getElementById("submit").click();
+	}
+}
+
 function submit(e) {
 	if (e.keyCode == 13) {
         document.getElementById("submit").click();
+		onMainPage = false;
     }
 }
 
