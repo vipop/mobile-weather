@@ -253,9 +253,9 @@ function update_weather(data) {
 	document.getElementById("temp").innerHTML = Math.round(data.main.temp) + "&deg;";
 	document.getElementById("humidity").innerHTML = "Humidity: " + data.main.humidity + "%";
 	if (document.getElementById("unit").checked == true) {
-		document.getElementById("wind").innerHTML = "Wind: " + data.wind.speed + " m/h";
+		document.getElementById("wind").innerHTML = "Wind: " + data.wind.speed + " mph";
 	} else {
-		document.getElementById("wind").innerHTML = "Wind: " + data.wind.speed + " km/h";
+		document.getElementById("wind").innerHTML = "Wind: " + data.wind.speed + " m/s";
 	}
 
 	document.getElementById("timestamp").innerHTML =  Date();
