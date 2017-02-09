@@ -5,6 +5,12 @@ body {
 	margin: 0px;
 }
 
+a {
+	color: #FFFFFF;
+	text-decoration: none;
+	font-weight: bold;
+}
+
 h1 {
 	margin: 0px;
 }
@@ -77,6 +83,7 @@ header {
 	margin-right: auto;
 	display: block;
 	border: none;
+	cursor: pointer;
 }
 
 #city {
