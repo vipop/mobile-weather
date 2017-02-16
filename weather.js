@@ -196,37 +196,37 @@ function get_weather() {
 			unit = "\xB0F";
 		}
 		if (document.getElementById("unit").checked == true) {
-			getJSON("//api.openweathermap.org/data/2.5/weather?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&units=imperial", function(err, data) {
+			getJSON("http://api.openweathermap.org/data/2.5/weather?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&units=imperial", function(err, data) {
 				if (err != null) {
 					console.log("Failed to read json data");
 				}
 				update_weather(data);
 			});
-			getJSON("//api.openweathermap.org/data/2.5/forecast/daily?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&cnt=6&units=imperial", function(err, data) {
+			getJSON("http://api.openweathermap.org/data/2.5/forecast/daily?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&cnt=6&units=imperial", function(err, data) {
 				if (err != null) {
 					console.log("Failed to read json data");
 				}
 				update_forecast(data);
 			});
-			getJSON("//api.openweathermap.org/data/2.5/forecast?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&units=imperial", function(err, data) {
+			getJSON("http://api.openweathermap.org/data/2.5/forecast?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&units=imperial", function(err, data) {
 				if (err != null) {
 					console.log("Failed to read json data");
 				} else update_hourly_forecast(data);
 			});
 		} else {
-			getJSON("//api.openweathermap.org/data/2.5/weather?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&units=metric", function(err, data) {
+			getJSON("http://api.openweathermap.org/data/2.5/weather?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&units=metric", function(err, data) {
 				if (err != null) {
 					console.log("Failed to read json data");
 				}
 				update_weather(data);
 			});
-			getJSON("//api.openweathermap.org/data/2.5/forecast/daily?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&cnt=6&units=metric", function(err, data) {
+			getJSON("http://api.openweathermap.org/data/2.5/forecast/daily?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&cnt=6&units=metric", function(err, data) {
 				if (err != null) {
 					console.log("Failed to read json data");
 				}
 				update_forecast(data);
 			});
-			getJSON("//api.openweathermap.org/data/2.5/forecast?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&units=metric", function(err, data) {
+			getJSON("http://api.openweathermap.org/data/2.5/forecast?q=" + x + "&APPID=c6a5060483924264de49050df47e6584&units=metric", function(err, data) {
 				if (err != null) {
 					console.log("Failed to read json data");
 				} else update_hourly_forecast(data);
